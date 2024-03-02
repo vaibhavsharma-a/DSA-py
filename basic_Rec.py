@@ -141,7 +141,7 @@
     
 # ans = check_for_palindrome(0,remove_space,num)
 # print(ans)
-aiawgbajva
+
 #! fibonacci number
 #? basic approch
 
