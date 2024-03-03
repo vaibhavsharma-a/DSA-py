@@ -165,6 +165,31 @@
 
 #! print the subsquence of the array
 
+# arr = []
+
+# size_of_arr =  int(input("Enter the size of the array\n"))
+# for i in range(0,size_of_arr):
+#   elem = int(input(f"Enter the element at the {i}th position\n"))
+#   arr.append(elem)
+
+# # print(arr)
+# emp_lis = []
+
+# def print_subsec(index,arr,lis,n):
+#   if index == n:
+#     print(lis)
+#     return
+#   else:
+#     lis.append(arr[index])
+#     print_subsec(index+1,arr,lis,n)
+#     lis.pop()
+#     print_subsec(index+1,arr,lis,n)
+
+# print_subsec(0,arr,emp_lis,size_of_arr)
+
+
+#! finding the subseq containing the sum 
+
 arr = []
 
 size_of_arr =  int(input("Enter the size of the array\n"))
@@ -173,18 +198,64 @@ for i in range(0,size_of_arr):
   arr.append(elem)
 
 # print(arr)
-emp_lis = []
+# emp_lis = []
 
-def print_subsec(index,arr,lis,n):
+#! print all the subsec matching the sum
+# def subsec_sum(index,arr,lis,s,target_sum,n):
+#   if index == n:
+#     if s == target_sum:
+#       print(lis)
+#     return
+#   else:
+#     #?taking the element 
+#     lis.append(arr[index])
+#     s += arr[index]
+#     subsec_sum(index+1,arr,lis,s,target_sum,n)
+#     s -= arr[index]
+#     lis.pop()
+
+#     #?for not taking the elemnt
+#     subsec_sum(index+1,arr,lis,s,target_sum,n)
+
+#! only print one subsec matching the sum
+
+# def subsec_sum(index:int,arr:list,lis:list,s:int,target_sum:int,n:int) -> bool:
+#   if index == n:
+#     if s == target_sum:
+#       print(lis)
+#       return True
+#     return False
+#   else:
+# #?taking the element 
+#     lis.append(arr[index])
+#     s += arr[index]
+#     if (subsec_sum(index+1,arr,lis,s,target_sum,n) == True):
+#         return True
+#     s -= arr[index]
+#     lis.pop()
+
+#     #?for not taking the elemnt
+#     if(subsec_sum(index+1,arr,lis,s,target_sum,n)== True):
+#       return True
+#     return False
+
+#! count the number of subsec that has the similar sum
+
+def count_subsec(index, arr, target_sum, s,n) -> int:
   if index == n:
-    print(lis)
-    return
-  else:
-    lis.append(arr[index])
-    print_subsec(index+1,arr,lis,n)
-    lis.pop()
-    print_subsec(index+1,arr,lis,n)
+    if s == target_sum:
+      return 1
+    else:
+      return 0
+  
+  s += arr[index]
+  left = count_subsec(index+1,arr,target_sum,s,n)
 
-print_subsec(0,arr,emp_lis,size_of_arr)
+  s -+ arr[index]
+  right = count_subsec(index+1,arr,target_sum,s,n)
 
+  return left + right
 
+print(count_subsec(0,arr,2,0,size_of_arr))
+  
+  
