@@ -155,10 +155,36 @@
   
 # print(fibo(6))
 
-def fib(num):
-  if num <= 0:
-    return num 
-  else:
-   return fib(num - 1)+ fib(num - 2)
+# def fib(num):
+#   if num <= 0:
+#     return num 
+#   else:
+#    return fib(num - 1)+ fib(num - 2)
   
-print(fib(6))
+# print(fib(6))
+
+#! print the subsquence of the array
+
+arr = []
+
+size_of_arr =  int(input("Enter the size of the array\n"))
+for i in range(0,size_of_arr):
+  elem = int(input(f"Enter the element at the {i}th position\n"))
+  arr.append(elem)
+
+# print(arr)
+emp_lis = []
+
+def print_subsec(index,arr,lis,n):
+  if index == n:
+    print(lis)
+    return
+  else:
+    lis.append(arr[index])
+    print_subsec(index+1,arr,lis,n)
+    lis.pop()
+    print_subsec(index+1,arr,lis,n)
+
+print_subsec(0,arr,emp_lis,size_of_arr)
+
+
