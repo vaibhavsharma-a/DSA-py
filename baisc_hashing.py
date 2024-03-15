@@ -86,3 +86,51 @@
 # find_char = input("Enter the char you want to find the occcurance of\n")
 
 # print(f"The character {find_char} is present {hashed_chars[ord(find_char)]} times in the string")
+#! now with the help of a dictionary aka map or hashmap
+
+# string = "blamandjdjeoennngdndoanafgbafgoqrrj"
+
+# char_frq = {}
+
+# for letter in string:
+#   if letter not in char_frq:
+#     char_frq[letter] = 1
+#   else :
+#     char_frq[letter] += 1
+
+# print(char_frq)
+# find_char = input("Enter the char you want to find the occcurance of\n")
+# print(f"The frequency of the char {find_char} is {char_frq[find_char]} times in the given string")
+
+#! for numbers in the number list
+# numebr_lsit = [1,1,2,3,4,4,4,3,3,3,5,5,5,2,3,3,5,6,6,12,23,3,45,22]
+
+# char_frq = {}
+
+# for num in numebr_lsit:
+#   if num not in char_frq:
+#     char_frq[num] = 1
+#   else :
+#     char_frq[num] += 1
+
+# # print(char_frq[11])
+# number = int(input("Enter the number you want to find the occcurance of\n"))
+# print(f"The frequency of the number {number} is {char_frq.get(number,0)} times in the given string")
+
+#! to calculate the most frequent element and its frequency
+# string = "blamandjdjeoennngdndoanafgbafgoqrrj"
+# max_frq = 0
+# max_frq_elemt = None
+# char_frq = {}
+
+# for letter in string:
+#   if letter not in char_frq:
+#     char_frq[letter] = 1
+#   else :
+#     char_frq[letter] += 1
+
+#   if char_frq[letter] > max_frq:
+#     max_frq = char_frq[letter]
+#     max_frq_elemt = letter
+
+# print(f"The element with max freqency is {max_frq_elemt} having the frequency of {max_frq}")
