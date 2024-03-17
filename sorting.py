@@ -19,6 +19,21 @@
 # sorted_arry = selection_sort(arry,n)
 # print(sorted_arry)
 
+# def selection_Sort_py(arr, size):
+#   for step in range(0, size):
+#     min_index = step
+
+#     for i in range(step+1, size):
+#       if arr[i]< arr[min_index]:
+#         min_index = i
+
+#     (arr[step],arr[min_index]) = (arr[min_index],arr[step])
+
+# arry = [4,2,1,3,10,3,12]
+# size = len(arry)
+# selection_Sort_py(arry,size)
+# print(arry)
+
 #! Bubble sort O(n^2)
 
 # def bubble_sort(arr:list,num:int):
@@ -189,5 +204,25 @@
 # quick_sort(arry)
 # print(arry)
   
+# def get_partition(arr,low,high):
+#   pivot = arr[high]
+#   i = low
+
+#   for j in range(low,high):
+#     if arr[j] <= pivot:
+#       arr[j], arr[i] = arr[i],arr[j]
+#       i += 1
+#   arr[high],arr[i] = arr[i], arr[high]
+#   return i 
+
+# def quick_sort(arr,low,high):
+#   if low<high:
+    
+#     partition_index = get_partition(arr,low,high)
+#     quick_sort(arr,low,partition_index-1)
+#     quick_sort(arr,partition_index+1,high)
 
 
+# arr = [3,12,2,1,25,10,9]
+# quick_sort(arr,0,len(arr)-1)
+# print(arr)
