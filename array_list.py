@@ -303,8 +303,8 @@ n2 = len(arr2)
 
 #? brute force
 
-arr = [1,2,3,4]
-n = 5
+# arr = [1,2,3,4]
+# n = 5
 
 # for i in range(1,n+1):
 #   flag = 0
@@ -330,30 +330,124 @@ n = 5
 #?Optimal 
 
 #! using sum
-def missing_elemet(arr,n):
-  sum_0f_n = n*(n+1)//2
-  s1 = 0
-  for i in range(0,n-1):
-    s1 += arr[i]
+# def missing_elemet(arr,n):
+#   sum_0f_n = n*(n+1)//2
+#   s1 = 0
+#   for i in range(0,n-1):
+#     s1 += arr[i]
 
-  difference = sum_0f_n - s1
-  return difference
+#   difference = sum_0f_n - s1
+#   return difference
 
-print(missing_elemet(arr,n))
+# print(missing_elemet(arr,n))
 
-#! using xor
+# #! using xor
 
-def missing_num(arr,n):
-  xor1 = 0
-  for i in range(1,n+1):
-    xor1 = xor1 ^ i
+# def missing_num(arr,n):
+#   xor1 = 0
+#   for i in range(1,n+1):
+#     xor1 = xor1 ^ i
   
-  xor2 = 0
-  for i in range(0,n-1):
-    xor2 = xor2 ^ arr[i]
+#   xor2 = 0
+#   for i in range(0,n-1):
+#     xor2 = xor2 ^ arr[i]
 
 
 
-  return xor1 ^ xor2
+#   return xor1 ^ xor2
 
-print(missing_num(arr,n))
+# print(missing_num(arr,n))
+
+#! max consicutive ones
+
+# def finding_max_consi_ones(arr,n,num):
+#   maximum = 0
+#   count = 0
+
+#   for i in range(0,n):
+#     if arr[i] == num:
+#       count += 1
+#       maximum = max(maximum,count)
+#     else:
+#       count = 0
+  
+#   return maximum
+
+# arr = [0,0,1,1,1,0,1,1,1,1,1,0,0,1]
+# n = len(arr)
+
+# print(finding_max_consi_ones(arr,n,1))
+
+#! element with the single occurance in the list
+
+# def single_occure(arr,n):
+#   xor = 0
+#   for i in range(n):
+#     xor = xor ^ arr[i]
+  
+#   return xor
+
+# arr = [1,1,2,2,3,4,4]
+# n = len(arr)
+
+# print(single_occure(arr,n))
+
+#! find max len of the subarray having sum is K
+
+# def find_max_subarray(arr,k):
+#   n = len(arr)
+#   summ = 0
+#   max_l = 0
+#   pre_sum_map = {}
+
+#   for i in range(n):
+#     summ += arr[i]
+
+#     if summ == k:
+#       max_l = max(max_l,(i+1))
+
+#     rem = summ - k
+
+#     if rem in pre_sum_map:
+#       length =  i - pre_sum_map[rem]
+#       max_l = max(max_l,length)
+
+#     if summ not in pre_sum_map:
+#       pre_sum_map[summ] = i
+  
+#   return max_l
+
+
+# arr = [2,3,5,1,9]
+# k = 10
+
+# print(find_max_subarray(arr,k))
+
+#! Optimal 
+
+def find_max_subarray_sum(arr,k):
+  n = len(arr)
+  rgt = 0
+  lft = 0
+  total = arr[0]
+  max_l = 0
+
+  while(rgt < n):
+    while(lft <= rgt and total > k):
+      total -= arr[lft]
+      lft += 1
+
+    if total == k:
+      max_l = max(max_l, rgt - lft + 1)
+
+    rgt += 1
+    if (rgt < n ):
+      total += arr[rgt]
+  
+  return max_l
+
+
+arr = [2,3,5,1,9]
+k = 8
+
+print(find_max_subarray_sum(arr,k))
