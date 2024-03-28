@@ -366,17 +366,224 @@
 
 #? Optimal
 
-def superior_element(arr,n):
-  maxi = -float('inf')
-  ans = []
-  for i in range(n-1,-1,-1):
-    if arr[i] > maxi:
-      ans.append(arr[i])
+# def superior_element(arr,n):
+#   maxi = -float('inf')
+#   ans = []
+#   for i in range(n-1,-1,-1):
+#     if arr[i] > maxi:
+#       ans.append(arr[i])
     
-    maxi = max(maxi,arr[i])
+#     maxi = max(maxi,arr[i])
 
-  return ans
+#   return ans
 
-arr = [2,5,19,15,10,12,3]
-n = len(arr)
-print(superior_element(arr,n))
+# arr = [2,5,19,15,10,12,3]
+# n = len(arr)
+# print(superior_element(arr,n))
+
+#! longest consecutive subarray 
+
+#? brute
+
+# def linear_search(a,num):
+#   for i in a:
+#     if i == num:
+#       return True
+#   return False
+
+
+# def longest_consecutive_array(a,n):
+#   longest = 1
+#   for i in range(n):
+#     x = a[i]
+#     cnt = 1
+#     while(linear_search(a,x+1) == True):
+#       x = x+1
+#       cnt += 1
+    
+#     longest = max(longest,cnt)
+#   return longest
+
+
+# a = [1,103,2,101,4,3,102]
+# n = len(a)
+# print(longest_consecutive_array(a,n))
+
+#? better 
+
+# def better_consec_sub(arr,n):
+#   arr.sort()
+#   longest = 1
+#   last_small = -float('inf')
+#   cnt = 0
+#   for i in range(n):
+#     if arr[i] - 1 == last_small:
+#       cnt += 1
+#       last_small = arr[i]
+#     elif arr[i] != last_small:
+#       cnt = 1
+#       last_small = arr[i]
+
+#     longest = max(longest,cnt)
+#   return longest
+
+# a = [1,103,2,101,4,3,102]
+# n = len(a)
+# print(better_consec_sub(a,n))
+
+
+#todo : will preserve the order while iterating over the list to store single element but will not sort them
+# from collections import OrderedDict as od
+# lis = [1,1,3,3,2,3,4,1,4,6,3,7,8,6,5,8,2]
+# som = od.fromkeys(lis)
+
+# print(list(som.keys()))
+
+#? Optimal
+
+# def optimal_consec_sub(arr,n):
+#   if n == 0:
+#     return 0
+  
+#   longest = 1
+#   num_set =  set()
+
+#   for num in arr:
+#     num_set.add(num)
+
+#   for num in num_set:
+
+#     if num - 1 not in num_set:
+#       cnt = 1
+#       x = num
+#       while x+1 in num_set:
+#         x += 1
+#         cnt += 1
+
+#       longest = max(longest,cnt)
+  
+#   return longest
+
+# a = [1,103,2,101,4,3,102]
+# n = len(a)
+# print(optimal_consec_sub(a,n))
+
+#! RSA digital signature services
+
+# from cryptography.hazmat.backends import default_backend
+# from cryptography.hazmat.primitives import hashes
+# from cryptography.hazmat.primitives.asymmetric import padding
+# from cryptography.hazmat.primitives.asymmetric import rsa
+
+# # Generate RSA key pair
+# private_key = rsa.generate_private_key(
+#     public_exponent=65537,
+#     key_size=2048,
+#     backend=default_backend()
+# )
+# public_key = private_key.public_key()
+
+# # Message to be signed
+# message = b"Hello, world!"
+
+# # Sign the message
+# signature = private_key.sign(
+#     message,
+#     padding.PSS(
+#         mgf=padding.MGF1(hashes.SHA256()),
+#         salt_length=padding.PSS.MAX_LENGTH
+#     ),
+#     hashes.SHA256()
+# )
+
+# # Verify the signature
+# try:
+#     public_key.verify(
+#         signature,
+#         message,
+#         padding.PSS(
+#             mgf=padding.MGF1(hashes.SHA256()),
+#             salt_length=padding.PSS.MAX_LENGTH
+#         ),
+#         hashes.SHA256()
+#     )
+#     print("Signature is valid. Message is authentic.")
+# except:
+#     print("Invalid signature. Message may have been tampered with.")
+
+#! set matrix zero
+
+#? brute
+
+# def set_row(i,matrix,m):
+#   for j in range(m):
+#     if matrix[i][j] != 0:
+#       matrix[i][j] = -1
+
+# def set_col(j,matrix,n):
+#   for i in range(n):
+#     if matrix[i][j] != 0:
+#       matrix[i][j] = -1
+
+# def set_matrix(matrix,n,m):
+#   for i in range(n):
+#     for j in range(m):
+#       if matrix[i][j] == 0:
+#         set_row(i,matrix,m)
+#         set_col(j,matrix,n)
+
+  
+#   for i in range(n):
+#     for j in range(m):
+#       if matrix[i][j] == -1:
+#         matrix[i][j] = 0
+
+#   return matrix
+
+# matrix = [[1,1,0,1],[1,1,1,1],[1,1,1,0]]
+# n = len(matrix)
+# m = len(matrix[0])
+# for i in range(n):
+#   for j in range(m):
+#     print(matrix[i][j], end=" ")
+#   print()
+# print("--------------------------------------")
+# ans = set_matrix(matrix,n,m)
+# for i in range(n):
+#   for j in range(m):
+#     print(ans[i][j], end=" ")
+#   print()
+
+#? better
+# def set_zero_better(matrix,n,m):
+#   row = [0] * n
+#   col =  [0] * m
+
+#   for i in range(n):
+#     for j in range(m):
+#       if matrix[i][j] == 0:
+#         row[i] = 1
+#         col[j] = 1
+
+#   for i in range(n):
+#     for j in range(m):
+#       if row[i] or col[j]:
+#         matrix[i][j] = 0
+
+#   return matrix
+
+  
+
+# matrix = [[1,1,0,1],[0,1,1,1],[1,1,1,0],[1,1,1,1]]
+# n = len(matrix)
+# m = len(matrix[0])
+# for i in range(n):
+#   for j in range(m):
+#     print(matrix[i][j], end=" ")
+#   print()
+# print("--------------------------------------")
+# ans = set_zero_better(matrix,n,m)
+# for i in range(n):
+#   for j in range(m):
+#     print(ans[i][j], end=" ")
+#   print()
