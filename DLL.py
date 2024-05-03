@@ -144,7 +144,7 @@ def insertbeforekthnode(head,val,k):
   return head
 
 def insertbeforegivenode(head,node,val):
-  pass
+  
   temp = head
   while temp.next is not None:
     if temp.data == node:
@@ -155,6 +155,26 @@ def insertbeforegivenode(head,node,val):
   added = Node(val,temp,back)
   back.next = added
   temp.prev = added
+
+  return head
+def reverseaDLL(head):
+  temp = head
+
+  node_st = []
+
+  while temp is not None:
+
+    node_st.append(temp.data)
+
+    temp = temp.next
+
+  temp = head
+
+  while node_st:
+
+    temp.data = node_st.pop()
+
+    temp = temp.next
 
   return head
 
@@ -180,5 +200,7 @@ print()
 # print_list(new_head)
 # new_head = insertbeforekthnode(head,12,2)
 # print_list(new_head)
-new_node = insertbeforegivenode(head,5,18)
-print_list(new_node)
+# new_node = insertbeforegivenode(head,5,18)
+# print_list(new_node)
+# revhed = reverseaDLL(head)
+# print_list(revhed)

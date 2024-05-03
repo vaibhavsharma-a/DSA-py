@@ -124,6 +124,7 @@ def print_list(head):
   while head is not None:
     print(head.data,end=" ")
     head = head.next
+  print()
 
 #! convert an array to linked list
 def converttoLL(arr):
@@ -189,7 +190,7 @@ def deletelm(head,elm):
     return deletehead(head)
   temp = head
   prev = None
-  while temp != None:
+  while temp is not None:
     if temp.data == elm:
       prev.next = prev.next.next
       temp.next = None
@@ -208,6 +209,9 @@ def deletelm(head,elm):
 #   # temp.next = head
 #   return temp
 
+def insertionhead(head,newval):
+  return Node(newval,head)
+
 
 # #! insert at the last
 # def insertattail(head,val):
@@ -219,6 +223,17 @@ def deletelm(head,elm):
 #     temp = temp.next
 #   temp.next = tail
 #   return head
+
+def tailinsertion(head,val):
+  temp = head
+  
+  while temp.next is not None:
+    
+    temp = temp.next
+
+  newnode = Node(val)
+  temp.next = newnode
+  return head
 
 # #! insert at Kth postion (k -> 1 to N+1)
   
@@ -247,6 +262,29 @@ def deletelm(head,elm):
 
 #   return head
 
+def insertatk(head,k,val):
+  if head is None:
+    if k == 1:
+      return Node(val)
+    
+  if k == 1:
+    return insertionhead(head,val)
+  
+  temp = head
+  cnt = 0
+  prev = None
+  while temp.next is not None:
+    cnt += 1
+    if cnt == k:
+      newnode = Node(val,temp)
+      prev.next = newnode
+      break
+    prev = temp
+    temp = temp.next
+
+  return head
+
+
 
 # #! insert before a certain value in a linked list
 
@@ -269,6 +307,38 @@ def deletelm(head,elm):
 
 #   return head
 
+def insert_bef_val(head,val,ins):
+
+  if head is None:
+    return None
+  if head.data == val:
+    return Node(ins,head)
+  
+  temp = head
+  prev = None
+  while temp.next is not None:
+    if temp.data == val:
+      newnode = Node(ins,temp)
+      prev.next = newnode
+      break
+    prev = temp
+    temp = temp.next
+
+  return head
+
+def checkforloop(head):
+  temp = head
+  check ={}
+
+  while temp is not None:
+    if temp in check:
+      return "Yes there is a loop"
+    
+    check[temp] = 1
+    print(check)
+
+    temp = temp.next
+  return "there is not loop in the list"
 
 arr = [2,3,4,5,7]
 head = converttoLL(arr)
@@ -279,6 +349,18 @@ print_list(head)
 # print()
 # head3 = deltail(head)
 # print_list(head3)
-print()
-head4 = deleteK(head,1)
-print_list(head4)
+# print()
+# head4 = deleteK(head,1)
+# print_list(head4)
+# print()
+# head5 = deletelm(head,4)
+# print_list(head5)
+# headnew = insertionhead(head,22)
+# print_list(headnew)
+# headn = tailinsertion(head,55)
+# print_list(headn)
+# another_head = insertatk(head,4,666)
+# print_list(another_head)
+# lasthead = insert_bef_val(head,5,18)
+# print_list(lasthead)
+# print(checkforloop(head))
