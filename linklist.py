@@ -340,6 +340,16 @@ def checkforloop(head):
     temp = temp.next
   return "there is not loop in the list"
 
+def revlist(head):
+  temp = head
+  prev = None
+  while temp is not None:
+    front = temp.next
+    temp.next = prev
+    prev = temp
+    temp = front
+  return prev
+
 arr = [2,3,4,5,7]
 head = converttoLL(arr)
 print_list(head)
@@ -364,3 +374,5 @@ print_list(head)
 # lasthead = insert_bef_val(head,5,18)
 # print_list(lasthead)
 # print(checkforloop(head))
+reverse = revlist(head)
+print_list(reverse)
