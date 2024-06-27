@@ -350,9 +350,158 @@ def revlist(head):
     temp = front
   return prev
 
-arr = [2,3,4,5,7]
+def oddeven(head):
+  arr = []
+  temp = head
+  while temp is not None and temp.next is not None:
+    arr.append(temp.data)
+    temp = temp.next.next
+  
+  if temp:
+    arr.append(temp.data)
+
+  temp = head.next
+  while temp is not None and temp.next is not None:
+    arr.append(temp.data)
+    temp = temp.next.next
+  
+  if temp:
+    arr.append(temp.data)
+  
+  i = 0 
+  temp = head
+  while temp is not None:
+    temp.data = arr[i]
+    i+= 1
+    temp = temp.next
+  
+  return head
+
+def evenoddopti(head):
+  odd = head
+  even = head.next
+  even_node = head.next
+
+  if head is None or head.next is None:
+    return head
+  
+  while even is not None and even.next is not None:
+    odd.next = odd.next.next
+    even.next = even.next.next
+
+    odd = odd.next
+    even = even.next
+
+  odd.next = even_node
+
+  return head
+
+
+def sort_list_of_0_1_2(head):
+  cnt0,cnt1,cnt2 = 0,0,0
+  temp = head
+
+  while temp is not None:
+    if temp.data == 0:
+      cnt0+=1
+    elif temp.data == 1:
+      cnt1 += 1
+    else:
+      cnt2 += 1
+    
+    temp = temp.next
+  
+  temp = head
+  while temp is not None:
+    if cnt0:
+      temp.data = 0
+      cnt0 -= 1
+    elif cnt1:
+      temp.data = 1
+      cnt1 -= 1
+    else:
+      temp.data = 2
+      cnt2 -= 1
+
+    temp = temp.next
+
+  return head
+
+def sort_0_1_2(head):
+  zero_head = Node(-1)
+  one_head = Node(-1)
+  two_head = Node(-1)
+  
+  zero = zero_head
+  one = one_head
+  two = two_head
+
+  temp = head
+
+  while temp is not None:
+    if temp.data == 0:
+      zero.next = temp
+      zero = temp
+    
+    elif temp.data == 1:
+      one.next = temp
+      one = temp
+    
+    else:
+      two.next = temp
+      two = temp
+    
+    temp = temp.next
+
+  if one_head.next:
+    zero.next = one_head.next
+  else:
+    zero.next = two_head.next
+
+  one.next = two_head.next
+  two.next = None
+
+  new_head = zero_head.next
+
+  return new_head
+
+def add1_to_ll(head):
+
+  head = revlist(head)
+  temp = head
+  carry = 1
+
+  while temp is not None:
+
+    temp.data = temp.data + carry
+    if temp.data < 10:
+      carry = 0
+      break
+    else:
+      temp.data = 0
+      carry = 1
+    
+    temp = temp.next
+  
+  if carry:
+    new_node = Node(1)
+    head = revlist(head)
+    new_node.next = head
+    return new_node
+  
+  head = revlist(head)
+  return head
+
+
+
+arr = [2,3,4,5,7,8]
+arr012 = [0,2,1,2,1,0,2,1]
+head1 = converttoLL(arr012)
+# print_list(head1)
 head = converttoLL(arr)
 print_list(head)
+add1 = [9,9,9]
+added1 = converttoLL(add1)
 # print()
 # head1 = deletehead(head)
 # print_list(head1)
@@ -374,5 +523,13 @@ print_list(head)
 # lasthead = insert_bef_val(head,5,18)
 # print_list(lasthead)
 # print(checkforloop(head))
-reverse = revlist(head)
-print_list(reverse)
+# reverse = revlist(head)
+# print_list(reverse)
+# print_list(head)
+# head1 = evenoddopti(head)
+# print_list(head1)
+# head012 = sort_0_1_2(head1)
+# print_list(head012)
+print_list(added1)
+headdy = add1_to_ll(added1)
+print_list(headdy)
